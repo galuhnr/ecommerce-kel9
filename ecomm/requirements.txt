@@ -1,5 +1,5 @@
 asgiref==3.6.0
-backports.zoneinfo==0.2.1;python_version<"3.10"
+backports.zoneinfo==0.2.1;python_version<"3.9"
 certifi==2022.12.7
 cffi==1.15.1
 charset-normalizer==3.1.0
@@ -7,11 +7,11 @@ crispy-bootstrap5==0.7
 cryptography==40.0.1
 defusedxml==0.7.1
 Django==4.2
-django-allauth==0.54.0
-django-countries==7.5.1
-django-crispy-forms==2.0
-django-environ==0.10.0
-django-paypal==2.0
+django-allauth
+django-countries
+django-crispy-forms
+django-environ
+django-paypal
 idna==3.4
 oauthlib==3.2.2
 Pillow==9.5.0
