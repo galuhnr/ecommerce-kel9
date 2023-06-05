@@ -5,7 +5,8 @@ from django.urls import reverse
 
 PILIHAN_KATEGORI = (
     ('M', 'Makanan'),
-    ('BJ', 'Baju')
+    ('BJ', 'Baju'),
+    ('SV', 'Souvenir'),
 )
 
 PILIHAN_LABEL = (

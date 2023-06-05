@@ -14,7 +14,7 @@ from .models import ProdukItem, OrderProdukItem, Order, AlamatPengiriman, Paymen
 class HomeListView(generic.ListView):
     template_name = 'home.html'
     queryset = ProdukItem.objects.all()
-    paginate_by = 4
+    paginate_by = 8
 
 class ProductDetailView(generic.DetailView):
     template_name = 'product_detail.html'
@@ -26,11 +26,11 @@ class CheckoutView(LoginRequiredMixin, generic.FormView):
         try:
             order = Order.objects.get(user=self.request.user, ordered=False)
             if order.produk_items.count() == 0:
-                messages.warning(self.request, 'Belum ada belajaan yang Anda pesan, lanjutkan belanja')
+                messages.warning(self.request, 'Belum ada yang Anda pesan, lanjutkan belanja')
                 return redirect('toko:home-produk-list')
         except ObjectDoesNotExist:
             order = {}
-            messages.warning(self.request, 'Belum ada belajaan yang Anda pesan, lanjutkan belanja')
+            messages.warning(self.request, 'Belum ada yang Anda pesan, lanjutkan belanja')
             return redirect('toko:home-produk-list')
 
         context = {
@@ -81,9 +81,9 @@ class PaymentView(LoginRequiredMixin, generic.FormView):
             paypal_data = {
                 'business': settings.PAYPAL_RECEIVER_EMAIL,
                 'amount': order.get_total_harga_order,
-                'item_name': f'Pembayaran belajanan order: {order.id}',
+                'item_name': f'Pembayaran order: {order.id}',
                 'invoice': f'{order.id}-{timezone.now().timestamp()}' ,
-                'currency_code': 'USD',
+                'currency_code': 'IDR',
                 'notify_url': self.request.build_absolute_uri(reverse('paypal-ipn')),
                 'return_url': self.request.build_absolute_uri(reverse('toko:paypal-return')),
                 'cancel_return': self.request.build_absolute_uri(reverse('toko:paypal-cancel')),
@@ -113,7 +113,7 @@ class OrderSummaryView(LoginRequiredMixin, generic.TemplateView):
             template_name = 'order_summary.html'
             return render(self.request, template_name, context)
         except ObjectDoesNotExist:
-            messages.error(self.request, 'Tidak ada pesanan yang aktif')
+            messages.error(self.request, 'Tidak ada pesanan')
             return redirect('/')
 
 def add_to_cart(request, slug):
