@@ -160,14 +160,17 @@ def remove_from_cart(request, slug):
                         produk_item=produk_item,
                         user=request.user,
                         ordered=False
-                    )[0]
-                    
-                    order.produk_items.remove(order_produk_item)
-                    order_produk_item.delete()
+                    ).first()
 
-                    pesan = f"ProdukItem sudah dihapus"
+                    if order_produk_item.quantity > 1:
+                        order_produk_item.quantity -= 1
+                        order_produk_item.save()
+                    else:
+                        order.produk_items.remove(order_produk_item)
+                    pesan = f"Jumlah produk telah dikurangi"
                     messages.info(request, pesan)
-                    return redirect('toko:produk-detail',slug = slug)
+                    return redirect('toko:produk-detail', slug=slug)
+                
                 except ObjectDoesNotExist:
                     print('Error: order ProdukItem sudah tidak ada')
             else:
