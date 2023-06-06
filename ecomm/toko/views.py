@@ -11,10 +11,50 @@ from paypal.standard.forms import PayPalPaymentsForm
 from .forms import CheckoutForm
 from .models import ProdukItem, OrderProdukItem, Order, AlamatPengiriman, Payment
 
+from django.db.models import Q
+
 class HomeListView(generic.ListView):
     template_name = 'home.html'
     queryset = ProdukItem.objects.all()
     paginate_by = 8
+
+class BajuListView(generic.ListView):
+    kategori ='BJ'
+    template_name = 'home.html'
+    queryset = ProdukItem.objects.filter(kategori=kategori)
+    paginate_by = 8
+
+class MakananListView(generic.ListView):
+    kategori ='M'
+    template_name = 'home.html'
+    queryset = ProdukItem.objects.filter(kategori=kategori)
+    paginate_by = 8
+
+class SouvenirListView(generic.ListView):
+    kategori ='SV'
+    template_name = 'home.html'
+    queryset = ProdukItem.objects.filter(kategori=kategori)
+    paginate_by = 8
+
+# class ProductSearch(generic.ListView):
+#     def get(self, *args, **kwargs):
+#         query = self.request.GET.get('q')
+#         object_list = []
+        
+#         if query:
+#             object_list = ProdukItem.objects.filter( 
+#                 Q(nama_produk=query) | Q(kategori=query))
+#         context = {
+#             'object_list': object_list, 
+#             'query': query
+#         }
+#         paginate_by = 8
+#         return render(self.request, 'home.html', context, paginate_by)
+def cari_produk(request):
+    query = request.GET.get('query')
+    object_list = ProdukItem.objects.filter(nama_produk=query) if query else []
+    context = {'object_list': object_list, 'query': query}
+    return render(request, 'home.html', context)
 
 class ProductDetailView(generic.DetailView):
     template_name = 'product_detail.html'

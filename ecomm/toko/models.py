@@ -12,7 +12,7 @@ PILIHAN_KATEGORI = (
 PILIHAN_LABEL = (
     ('NEW', 'primary'),
     ('SALE', 'danger'),
-    ('BEST', 'dark'),
+    ('BEST', 'success'),
 )
 
 PILIHAN_PEMBAYARAN = (

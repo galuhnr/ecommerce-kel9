@@ -6,123 +6,128 @@
 
 <!--Main layout-->
 <main>
-    <div class="container">
-        <!-- Navbar -->
-        <!-- <nav class="navbar navbar-expand-lg navbar-dark mt-3 mb-5 shadow p-2" style="background-color: #607D8B"> -->
-            <!-- Container wrapper -->
-            <!-- <div class="container-fluid"> -->
-                <!-- Navbar brand -->
-                <!-- <a class="navbar-brand" href="#">Categories:</a> -->
-                <!-- Toggle button -->
-                <!-- <button
-                        class="navbar-toggler"
-                        type="button"
-                        data-mdb-toggle="collapse"
-                        data-mdb-target="#navbarSupportedContent2"
-                        aria-controls="navbarSupportedContent2"
-                        aria-expanded="false"
-                        aria-label="Toggle navigation">
-                    <i class="fas fa-bars"></i>
-                </button> -->
+  <div class="container">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg mt-4 mb-5 p-2" style="background-color: white">
+      <!-- Container wrapper -->
+      <div class="container-fluid">
+        <!-- Navbar brand -->
+        <h6 class="navbar-brand mt-2">Kategori: </h6>
+        <!-- Toggle button -->
+        <button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
+          data-mdb-target="#navbarSupportedContent2" aria-controls="navbarSupportedContent2" aria-expanded="false"
+          aria-label="Toggle navigation">
+          <i class="fas fa-bars"></i>
+        </button>
 
-                <!-- Collapsible wrapper -->
-                <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent2">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0"> -->
+        <!-- Collapsible wrapper -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent2">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-                        <!-- Link -->
-                        <!-- <li class="nav-item acitve">
-                            <a class="nav-link text-white" href="#">All</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="#">Makanan & Minuman</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="#">Souvenir</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="#">Baju</a>
-                        </li>
+            <!-- Link -->
+            <li class="nav-item acitve">
+              <a class="nav-link text-dark" href="{% url 'toko:home-produk-list' %}">All</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="{% url 'toko:home-produk-baju' %}">Baju</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="{% url 'toko:home-produk-makanan-minuman' %}">Makanan & Minuman</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="{% url 'toko:home-produk-souvenir' %}">Souvenir</a>
+            </li>
 
-                    </ul> -->
-                    <!-- Search -->
-                    <!-- <form class="w-auto py-1" style="max-width: 12rem">
-                        <input type="search" class="form-control rounded-0" placeholder="Search" aria-label="Search">
-                    </form> -->
+          </ul>
+          <!-- Search -->
+          <form class="input-group w-auto py-1" method="GET" action="{% url 'toko:product_search' %}">
+            <div class="form-outline" style="background-color: white !important;">
+              <input type="text" id="form1" name="query" class="form-control rounded-0" aria-label="Search"  value="{{ query }}"/>
+              <label class="form-label" for="form1">Search</label>
+            </div>
+            <button type="submit" class="btn btn-primary">
+              <i class="fas fa-search"></i>
+            </button>
+          </form>
 
-                <!-- </div>
-            </div> -->
-            <!-- Container wrapper -->
-        <!-- </nav> -->
-        <!-- Navbar -->
+        </div>
+      </div>
+      <!-- Container wrapper -->
+    </nav>
+    <!-- Navbar -->
 
-        <!-- Products -->
-        <section class="mt-5 mb-5">
-            <div class="text-center">
-              <div class="row">
-                
-                {% for pItem in object_list %}
-                <div class="col-lg-3 col-md-6 mb-4">
-                  <div class="card">
-                    <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
-                      data-mdb-ripple-color="light">
-                      <img src="{{ pItem.gambar.url }}"
-                        class="w-100" />
-                      <a href="{{ pItem.get_absolute_url }}"> 
-                        <div class="mask">
-                          <div class="d-flex justify-content-start align-items-end h-100">
-                            <h5><span class="badge badge-{{ pItem.get_label_display }} ms-2">{{ pItem.label }}</span></h5>
-                          </div>
-                        </div>
-                        <div class="hover-overlay">
-                          <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                        </div>
-                      </a>
-                    </div>
-                    <div class="card-body">
-                      <a href="{{ pItem.get_absolute_url }}" class="text-reset">
-                        <h5 class="card-title mb-2">{{ pItem.nama_produk }}</h5>
-                      </a>
-                      <a href="" class="text-reset ">
-                        <p>{{ pItem.get_kategori_display }}</p>
-                      </a>
-                      <h6 class="mb-3 price">Rp {% if pItem.harga_diskon %}{{ pItem.harga_diskon }}{% else %}{{ pItem.harga }}{% endif %}</h6>
+    <!-- Products -->
+    <section class="mt-4 mb-4">
+      <div class="text-center">
+        <div class="row">
+
+          {% for pItem in object_list %}
+          <div class="col-lg-3 col-md-4 mb-4">
+            <div class="card">
+              <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light" data-mdb-ripple-color="light">
+                <img src="{{ pItem.gambar.url }}" class="w-100 h-100" />
+                <a href="{{ pItem.get_absolute_url }}">
+                  <div class="mask">
+                    <div class="d-flex justify-content-start align-items-end h-100">
+                      <h5><span class="badge badge-{{ pItem.get_label_display }} ms-2">{{ pItem.label }}</span></h5>
                     </div>
                   </div>
+                  <div class="hover-overlay">
+                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                  </div>
+                </a>
+              </div>
+              <div class="card-body">
+                <a href="{{ pItem.get_absolute_url }}" class="text-dark">
+                  <div class="card-title mb-2" style="font-size: 1.5 rem !important; color: black !important; font-weight: 600 !important;">
+                    {{ pItem.nama_produk }}
+                  </div>
+                </a>
+                <p style="font-size: 0.8rem !important; margin-bottom: 8px !important;">{{ pItem.get_kategori_display }}</p>
+                <div class="mb-3">
+                  <strong class="price mb-2" style="font-size: 1.4rem !important;">Rp {% if pItem.harga_diskon %}{{ pItem.harga_diskon|floatformat:0 }}{% else %}{{ pItem.harga|floatformat:0 }}{% endif %}</strong>
                 </div>
-                {% empty %}
-                  <p>Data Produk belum tersedia</p>
-                {% endfor %}
-
+                <a href="{{ pItem.get_absolute_url }}">
+                  <button type="button" class="btn btn-secondary btn-rounded w-100 mb-3" >Beli</button>
+                </a>
               </div>
             </div>
-          </section>
-        <!-- End Products -->
+          </div>
+          {% empty %}
+          <p>Data Produk belum tersedia</p>
+          {% endfor %}
 
-        <!-- Pagination -->
-        {% if is_paginated %}
-        <nav aria-label="Page navigation example" class="d-flex justify-content-center mt-3">
-            <ul class="pagination">
-                <li class="page-item">
-                  {% if page_obj.has_previous %}
-                    <a class="page-link" href="{{ request.path }}?page={{ page_obj.previous_page_number }}" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                    </a>
-                  {% endif %}
-                </li>
-                <li class="page-item active"><a class="page-link" href="#">{{ page_obj.number }}</a></li>
-                <li class="page-item">
-                  {% if page_obj.has_next %}
-                    <a class="page-link" href="{{ request.path }}?page={{ page_obj.next_page_number }}" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                    </a>
-                  {% endif %}
-                </li>
-            </ul>
-        </nav>
-        {% endif %}
-        <!-- Pagination -->
-    </div>
+        </div>
+      </div>
+    </section>
+    <!-- End Products -->
+
+    <!-- Pagination -->
+    {% if is_paginated %}
+    <nav aria-label="Page navigation example" class="d-flex justify-content-center mt-3">
+      <ul class="pagination">
+        <li class="page-item">
+          {% if page_obj.has_previous %}
+          <a class="page-link" href="{{ request.path }}?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+            <span>{{ page_obj.previous_page_number }}</span>
+          </a>
+          {% endif %}
+        </li>
+        <li class="page-item active" aria-current="page">
+          <a class="page-link" href="#">{{ page_obj.number }} <span class="visually-hidden">(current)</span></a>
+        </li>
+        <li class="page-item">
+          {% if page_obj.has_next %}
+          <a class="page-link" href="{{ request.path }}?page={{ page_obj.next_page_number }}" aria-label="Next">
+            <span>{{ page_obj.next_page_number }}</span>
+          </a>
+          {% endif %}
+        </li>
+      </ul>
+    </nav>
+    {% endif %}
+    <!-- Pagination -->
+  </div>
 </main>
 <!--Main layout-->
 {% endblock content %}
-

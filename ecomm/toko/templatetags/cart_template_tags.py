@@ -1,5 +1,5 @@
 from django import template
-from toko.models import Order
+from toko.models import OrderProdukItem, Order
 
 register = template.Library()
 
@@ -7,6 +7,11 @@ register = template.Library()
 def total_produk_dikeranjang(user):
     if user.is_authenticated:
         query = Order.objects.filter(user=user, ordered=False)
+        item = OrderProdukItem.objects.filter(user=user, ordered=False)
         if query.exists():
-            return query[0].produk_items.count()
+            order = query[0]
+            total_quantity = 0
+            for item in order.produk_items.all():
+                total_quantity += item.quantity
+            return total_quantity
     return 0

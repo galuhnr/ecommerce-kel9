@@ -1,3 +1,4 @@
+{% load static %}
 <!-- carousel -->
 <div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-mdb-ride="carousel">
     <div class="carousel-indicators">
@@ -24,7 +25,7 @@
     </div>
     <div class="carousel-inner" style="height: 300px;">
         <div class="carousel-item active" style="height: 380px;">
-            <img src="static/img/pic1.jpg" class="d-block w-100" alt="Wild Landscape"/>
+            <img src="{% static 'img/pic1.jpg' %}" class="d-block w-100" alt="Wild Landscape"/>
             <div class="mask" style="background-color: rgba(0, 0, 0, 0.4)"></div>
             <div class="carousel-caption d-none d-sm-block mb-10">
                 <h2><strong>Selamat Datang, Nikmati kemudahan berbelanja di Toko kami</strong></h2>
@@ -32,7 +33,7 @@
             </div>
         </div>
         <div class="carousel-item" style="height: 380px;">
-            <img src="static/img/pic2.jpg" class="d-block w-100" alt="Camera"/>
+            <img src="{% static 'img/pic2.jpg' %}" class="d-block w-100" alt="Camera"/>
             <div class="mask" style="background-color: rgba(0, 0, 0, 0.4)"></div>
             <div class="carousel-caption d-none d-sm-block mb-10">
                 <h2><strong>Selamat Datang, Nikmati kemudahan berbelanja di Toko kami</strong></h2>
@@ -40,7 +41,7 @@
             </div>
         </div>
         <div class="carousel-item" style="height: 380px;">
-            <img src="static/img/pic3.jpg" class="d-block w-100" alt="Exotic Fruits"/>
+            <img src="{% static 'img/pic3-new.jpg' %}" class="d-block w-100" alt="Exotic Fruits"/>
             <div class="mask" style="background-color: rgba(0, 0, 0, 0.4)"></div>
             <div class="carousel-caption d-none d-sm-block mb-10">
                 <h2><strong>Selamat Datang, Nikmati kemudahan berbelanja di Toko kami</strong></h2>

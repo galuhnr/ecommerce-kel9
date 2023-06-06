@@ -1,3 +1,12 @@
 {% load static %}
 
 <script type="text/javascript" src="{% static 'js/mdb.min.js' %}"></script>
+
+<!-- Alertify -->
+<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+<script>
+  {% for message in messages %}
+    alertify.set('notifier','position','top-right');
+    alertify.success('{{message}}');
+  {% endfor %}
+</script>
