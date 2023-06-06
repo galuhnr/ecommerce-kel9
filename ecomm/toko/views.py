@@ -36,20 +36,9 @@ class SouvenirListView(generic.ListView):
     queryset = ProdukItem.objects.filter(kategori=kategori)
     paginate_by = 8
 
-# class ProductSearch(generic.ListView):
-#     def get(self, *args, **kwargs):
-#         query = self.request.GET.get('q')
-#         object_list = []
-        
-#         if query:
-#             object_list = ProdukItem.objects.filter( 
-#                 Q(nama_produk=query) | Q(kategori=query))
-#         context = {
-#             'object_list': object_list, 
-#             'query': query
-#         }
-#         paginate_by = 8
-#         return render(self.request, 'home.html', context, paginate_by)
+class ContactView(generic.TemplateView):
+    template_name = 'contact.html'
+    
 def cari_produk(request):
     query = request.GET.get('query')
     object_list = ProdukItem.objects.filter(nama_produk=query) if query else []
@@ -123,7 +112,7 @@ class PaymentView(LoginRequiredMixin, generic.FormView):
                 'amount': order.get_total_harga_order,
                 'item_name': f'Pembayaran order: {order.id}',
                 'invoice': f'{order.id}-{timezone.now().timestamp()}' ,
-                'currency_code': 'IDR',
+                'currency_code': 'USD',
                 'notify_url': self.request.build_absolute_uri(reverse('paypal-ipn')),
                 'return_url': self.request.build_absolute_uri(reverse('toko:paypal-return')),
                 'cancel_return': self.request.build_absolute_uri(reverse('toko:paypal-cancel')),

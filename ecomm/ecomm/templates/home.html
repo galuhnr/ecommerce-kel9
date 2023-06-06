@@ -79,13 +79,13 @@
               </div>
               <div class="card-body">
                 <a href="{{ pItem.get_absolute_url }}" class="text-dark">
-                  <div class="card-title mb-2" style="font-size: 1.5 rem !important; color: black !important; font-weight: 600 !important;">
+                  <div class="card-title mb-2" style="font-size: 1.25rem !important; color: black !important; font-weight: 600 !important;">
                     {{ pItem.nama_produk }}
                   </div>
                 </a>
                 <p style="font-size: 0.8rem !important; margin-bottom: 8px !important;">{{ pItem.get_kategori_display }}</p>
                 <div class="mb-3">
-                  <strong class="price mb-2" style="font-size: 1.4rem !important;">Rp {% if pItem.harga_diskon %}{{ pItem.harga_diskon|floatformat:0 }}{% else %}{{ pItem.harga|floatformat:0 }}{% endif %}</strong>
+                  <strong class="price mb-2" style="font-size: 1.4rem !important;">Rp. {% if pItem.harga_diskon %}{{ pItem.harga_diskon|floatformat:0 }}{% else %}{{ pItem.harga|floatformat:0 }}{% endif %}</strong>
                 </div>
                 <a href="{{ pItem.get_absolute_url }}">
                   <button type="button" class="btn btn-secondary btn-rounded w-100 mb-3" >Beli</button>

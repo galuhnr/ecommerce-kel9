@@ -1,0 +1,87 @@
+<style>
+    
+    .contact-information{
+      position: relative;
+      z-index: 1;
+      padding: 30px 50px;
+      background-color: #E53935;
+      border-radius: 3px;
+    }
+    .contact-form{
+      position: relative;
+      z-index: 1;
+    }
+    .section-heading{
+      position: relative;
+      z-index: 1;
+      margin-bottom: 20px;
+    }
+    
+    .text-white{
+        color: white;
+    }
+    .contact-form .form-control{
+        width: 100%;
+        height: 46px;
+        padding: 0 15px;
+        font-size: 13px;
+        font-style: italic;
+    }
+    .mb-30{
+        margin-bottom: 30px;
+    }
+    .my-main{
+        margin-top: 100px !important;
+        margin-bottom: 20px;
+    }
+    .wi-100{
+        min-width: 100% !important;
+    }
+</style>
+
+{% extends 'base.html' %}
+
+{% block content %}
+<main class=".my-main">
+<div class="container my-main">
+    <div class="row">
+        <div class="col-12 col-md-4">
+            <div class="contact-information text-white">
+                <h5>Alamat</h5>
+                <p>Bausasran, Kec. Danurejan, Kota Yogyakarta, Daerah Istimewa Yogyakarta 55211</p>
+                <h5>No. telp</h5>
+                <p>083838384854</p>
+                <h5>Email</h5>
+                <p>jogjaku@example.com</p>
+            </div>
+
+        </div>
+        <div class="col-12 col-md-8">
+            <div class="contact-form">
+                <div class="section-heading">
+                    <h4>Silahkan Tinggalkan Pesan</h4>
+                    <hr>
+                </div>
+                <form action="#" method="post">
+                    <div class="row">
+                        <div class="col-lg=6">
+                            <input type="text" name="message-name" class="form-control mb-30 w-100" placeholder="Nama Lengkap">
+                        </div>
+                        <div class="col-lg-6">
+                            <input type="email" name="message-email" class="form-control mb-30 w-100" placeholder="Email" style="width: 740px !important;">
+                        </div>
+                        <div class="col-12">
+                            <textarea name="message" class="form-control mb-30 w-100 h-100" placeholder="Pesan atau Masukan/Kritik"></textarea>
+                        </div>
+                        <div class="col-12 mt-3">
+                            <button type="submit" class="btn btn-light">Kirim Pesan</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</main>
+{% endblock content%}
+

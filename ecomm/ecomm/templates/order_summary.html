@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container">
+<div class="container mt-5">
     <div class="row">
         <div class="col-12 mt-4 mb-4">
             <h1 class="text-center">Order Summary</h1>
@@ -40,19 +40,19 @@
                     </a>
                 </td>
                 <td>
-                    <div>Rp
+                    <div>Rp.
                         {% if pItem.produk_item.harga_diskon %}
-                        {{ pItem.produk_item.harga_diskon }}
+                        {{ pItem.produk_item.harga_diskon|floatformat:0 }}
                         {% else %}
-                        {{ pItem.produk_item.harga }}
+                        {{ pItem.produk_item.harga|floatformat:0 }}
                         {% endif %}
                     </div>
                 </td>
                 <td>{{ pItem.quantity }}</td>
                 <td>                
                     {% if pItem.produk_item.harga_diskon %}
-                    Rp{{ pItem.get_total_harga_diskon_item }}
-                    <span class="badge badge-danger rounded-pill d-inline">Hemat Rp{{ pItem.get_total_hemat_item }}</span>
+                    Rp.{{ pItem.get_total_harga_diskon_item|floatformat:0 }}
+                    <span class="badge badge-danger rounded-pill d-inline">Hemat Rp.{{ pItem.get_total_hemat_item|floatformat:0 }}</span>
                     {% else %}
                     Rp{{ pItem.get_total_harga_item }}
                     {% endif %}
@@ -72,9 +72,9 @@
             {% if keranjang.get_total_harga_order %}
             <tr>
                 <td colspan="4"><b>Total Belanja</b></td>
-                <td><b>Rp{{ keranjang.get_total_harga_order }}</b>
+                <td><b>Rp. {{ keranjang.get_total_harga_order|floatformat:0 }}</b>
                     {% if keranjang.get_total_hemat_order %}
-                    <span class="badge badge-danger">Hemat Rp{{ keranjang.get_total_hemat_order }}</span>
+                    <span class="badge badge-danger">Hemat Rp. {{ keranjang.get_total_hemat_order|floatformat:0 }}</span>
                     {% endif %}
                 </td>
             </tr>
@@ -88,5 +88,11 @@
             {% endif %}
         </tbody>
   </table>
+  <div class="container mt-5">
+    <div class="row h-100">
+        <div class="col-12"><p style="color: white;">c</p></div>
+    </div>
+  </div>
+  <div class="container"><span aria-hidden="true"></span></div>
 </div>
 {% endblock content %}
